@@ -1,3 +1,19 @@
+He realizado tode con las acciones asíncronas de Redux con Redux Thunk.
+También he conectado la base de datos (Firebase), he hecho que se puede conectardesde cualquier citio. Espero que no tengais problemás.
+Paza los test he utilozado la librería de Enzyme.
+
+
+Para instalar el proyecto: 
+## npm install
+
+Ejecutar:
+## npm start
+
+
+Hecer el test:
+## npm test
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
