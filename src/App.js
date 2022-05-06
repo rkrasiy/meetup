@@ -1,8 +1,6 @@
 import { BrowserRouter, Routes, Route  } from 'react-router-dom'
 import { useEffect } from "react";
 import { useSelector, useDispatch } from 'react-redux';
-import store from './store/store'
-import { Provider } from 'react-redux'
 
 import AllMeetupsPage from "./pages/AllMeetupsPage";
 import FavoritesPage from "./pages/Favorites";
@@ -35,7 +33,7 @@ function App() {
   }, [carts, dispatch])
 
   return (
-    <Provider store={store}>
+
       <BrowserRouter>
           <div data-test="app">
             {notification && (
@@ -54,7 +52,6 @@ function App() {
             </Layout>
           </div>
       </BrowserRouter>
-    </Provider>
   );
 }
 
