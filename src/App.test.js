@@ -1,6 +1,7 @@
 /* eslint-disable testing-library/await-async-query */
 /* eslint-disable testing-library/no-debugging-utils */
-import { shallow, mount } from "enzyme";
+import '@testing-library/jest-dom';
+import { shallow } from "enzyme";
 import App from "./App";
 import MainNavigation from "./components/layout/MainNavigation";
 import Layout from "./components/layout/Layout";

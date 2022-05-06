@@ -1,6 +1,6 @@
 import classes from "./MeetupItem.module.css";
 import Card from "../ui/Card";
-import { addToFavorites, removeFromFavorites } from "../../features/counter/counterSlice";
+import { addToFavorites, removeFromFavorites } from "../../store/favorites-slice";
 import { useDispatch } from 'react-redux'
 
 export default function MeetupItem(props) {
@@ -29,7 +29,7 @@ export default function MeetupItem(props) {
         <div className={classes.actions}>
           <button onClick={clickHandlerAdd}>
             {
-              !isFavorite  ? 'Add to favorites' : 'Remove from favorites'
+              !isFavorite  ? 'Add to favorites' : 'Remove from Favorites'
             }
           </button>
         </div>

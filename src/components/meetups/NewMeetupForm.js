@@ -1,17 +1,13 @@
 import Card from "../ui/Card";
 import classes from "./NewMeetupForm.module.css";
-import { useRef, useState, useEffect  } from "react";
-import { useFetch } from "../../util-hooks/useFetch";
+import { useRef } from "react";
 
+import { v4 as uuid } from 'uuid';
+import { addItem } from "../../store/carts-slice";
+import { useDispatch } from 'react-redux';
 
 export default function NewMeetupForm() {
-  const { data } = useFetch({
-    url: "/data.json",
-  });
-  const [dummyData, setDummyData] = useState('')
-  useEffect(()=>{
-    fetchData();
-  }, [])
+  const dispatch = useDispatch();
   const refTitle = useRef('');
   const refImage = useRef('');
   const refAddress = useRef('');
@@ -20,33 +16,19 @@ export default function NewMeetupForm() {
   async function submitHandler(event) {
     event.preventDefault();
 
-    //check all form's camps
-    const newMeetup = {
-
+    const item = {
+      id:  uuid(),
       title: refTitle.current.value,
       image: refImage.current.value,
-      direction: refAddress.current.value,
-      descrtipion: refDescription.current.value,
+      address: refAddress.current.value,
+      description: refDescription.current.value,
     }
-
-    let newArr = [ ...data, newMeetup]
-    console.log(newArr)
-      fetchData(newArr)
-  }
-
-  function fetchData(json = null){
-  if(!json) return
-    const requestOptions = {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(json)
-    };
-    fetch('/data.json', requestOptions)
-        .then(response => response.json())
-        .then(data => {
-        console.log('Data; ', data)
-          setDummyData(data)
-        } );
+    
+    dispatch(addItem({item: item}))
+    refTitle.current.value = ""
+    refImage.current.value = ""
+    refAddress.current.value = ""
+    refDescription.current.value = ""
   }
 
   return (

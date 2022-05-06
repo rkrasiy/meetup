@@ -1,8 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit'
 
-export const counterSlice = createSlice({
+export const favoritesSlice = createSlice({
   name: 'favorites',
-  initialState:  [],
+  initialState: [],
   reducers: {
     addToFavorites: (state, action) => {
       const { id  } = action.payload
@@ -14,10 +14,10 @@ export const counterSlice = createSlice({
       let index = oldList.indexOf(id);
       let newList = oldList.splice(index, 1);
       state = newList;
-    }
+    },
   },
 })
 
-export const { addToFavorites, removeFromFavorites } = counterSlice.actions
+export const {  addToFavorites, removeFromFavorites } = favoritesSlice.actions
 
-export default counterSlice.reducer
+export default favoritesSlice.reducer
