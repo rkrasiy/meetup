@@ -3,7 +3,8 @@ import { createSlice } from '@reduxjs/toolkit'
 export const cartsSlice = createSlice({
   name: 'carts',
   initialState: {
-    items: []
+    items: [],
+    changed: false
   },
   reducers: {
     replaceItems: (state, action) => {
@@ -11,6 +12,7 @@ export const cartsSlice = createSlice({
       state.items = items
     },
     addItem: (state, action) => {
+      state.changed = true;
       let items = state.items;
       let newItem = action.payload.item;
       state.items = [newItem,...items];
