@@ -1,14 +1,19 @@
-import { useFetch } from "./../../util-hooks/useFetch";
 import classes from "./MeetupItem.module.css";
 import Card from "../ui/Card";
+import { addToFavorites, removeFromFavorites } from "../../features/counter/counterSlice";
+import { useDispatch } from 'react-redux'
 
-export default function MeetupItem() {
-  const { data } = useFetch({
-    url: "/data.json",
-  });
+export default function MeetupItem(props) {
+  const { item, isFavorite } = props;
+  const dispatch = useDispatch()
 
-  if (!data) return <p>Loading...</p>;
-  let [item] = data;
+  function clickHandlerAdd(){
+    if(!isFavorite){
+      dispatch(addToFavorites( {id: item.id}))
+    }else if(isFavorite){
+      dispatch(removeFromFavorites( {id: item.id}))
+    }
+  }
 
   return (
     <li className={classes.item} data-test='meet-up-item'>
@@ -22,7 +27,11 @@ export default function MeetupItem() {
           <p>{item.description}</p>
         </div>
         <div className={classes.actions}>
-          <button>Add to favorites</button>
+          <button onClick={clickHandlerAdd}>
+            {
+              !isFavorite  ? 'Add to favorites' : 'Remove from favorites'
+            }
+          </button>
         </div>
       </Card>
     </li>

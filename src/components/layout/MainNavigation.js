@@ -1,9 +1,9 @@
-import { ALL_MEETUP_PAGE, FAVORITES_PAGE, NEW_MEETUP_PAGE } from "./../../utils/constants";
 import { useEffect, useState } from "react";
-
+import {  NavLink } from "react-router-dom";
 import classes from "./MainNavigation.module.css";
 
-export default function MainNavigation({ setPage }) {
+export default function MainNavigation(props) {
+
   const [scrolling, setScrolling] = useState(false);
   const [scrollTop, setScrollTop] = useState(0);
 
@@ -16,14 +16,32 @@ export default function MainNavigation({ setPage }) {
 
     return () => window.removeEventListener("scroll", onScroll);
   }, [scrollTop]);
-console.log(scrolling)
+
   return (
     <header className={`${classes.header} ${!scrolling ? classes.sticky : ''}`} data-test="navigation-header">
       <div className={classes.logo}>React Meetups</div>
       <nav>
         <ul>
           <li>
-            <a href="#" onClick={() => setPage(ALL_MEETUP_PAGE)}>
+            <NavLink 
+              className={({ isActive }) => isActive ? classes.active : ""} 
+              to="/">All Meetups</NavLink>
+          </li>
+          <li>
+            <NavLink
+              className={({ isActive }) => isActive ? classes.active : ""} 
+              to="/new-meetup">Add New Meetup</NavLink>
+          </li>
+          <li>
+            <NavLink 
+              className={({ isActive }) => isActive ? classes.active : ""}
+              to="/favoritos">
+              My Favorites
+                <span className={classes.badge}>{props.favoriteCount}</span>
+              </NavLink>
+          </li>
+          {/* <li>
+            <a href="/" onClick={() => setPage(ALL_MEETUP_PAGE)}>
               All Meetups
             </a>
           </li>
@@ -38,7 +56,7 @@ console.log(scrolling)
               My Favorites
               <span className={classes.badge}>{0}</span>
             </a>
-          </li>
+          </li> */}
         </ul>
       </nav>
     </header>
