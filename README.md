@@ -1,6 +1,6 @@
-He realizado tode con las acciones asíncronas de Redux con Redux Thunk.
-También he conectado la base de datos (Firebase), he hecho que se puede conectardesde cualquier citio. Espero que no tengais problemás.
-Paza los test he utilozado la librería de Enzyme.
+He realizado todo con las acciones asíncronas de Redux( Redux Thunk ).
+También he conectado la base de datos (Firebase), para que se pueda conectar desde cualquier citio. Espero que no tengais problemás.
+Los tests he usado la librería de Enzyme.
 
 
 Para instalar el proyecto: 
